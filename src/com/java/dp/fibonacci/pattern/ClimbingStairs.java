@@ -3,8 +3,6 @@ Total number of ways to reach Nth stair. Possible moves are 1, 2 and 3 stairs.
 */
 
 package com.java.dp.fibonacci.pattern;
-//Total Number of ways to reach the nth stair//
-//Two moves are possible = 1 or 2 stair//
 
 import java.util.Arrays;
 
