@@ -16,6 +16,31 @@ import java.util.List;
 
 public class PrintAllSubsequence {
 
+    static int doCountAllSubsequences(int index, int curr_sum, int sum, int[] input, int n) {
+        //n = 3
+        //input = {1,2,1}
+        //sum = 2
+        //base case//
+        if (n == index) {
+            if (curr_sum == sum) {
+                return 1;
+            }else{
+                return 0;
+            }
+        }
+
+        // 1st recursive call picks the element//
+        curr_sum += input[index]; //1, 3, 4, 2
+        int pick = doCountAllSubsequences(index + 1, curr_sum, sum, input, n); //1
+
+        //Return back to the previous state//
+        curr_sum -= input[index]; //3, 1, 1
+        //2nd recursive call to skip/ignore the current element//
+        int notPick = doCountAllSubsequences(index + 1, curr_sum, sum, input, n); //
+
+        return pick + notPick;
+    }
+
     static boolean doPrintAnyOneSubsequence(int index, List<Integer> ds, int curr_sum, int sum, int[] input, int n){
         //n = 3
         //input = {1,2,1}
@@ -88,8 +113,16 @@ public class PrintAllSubsequence {
         int n = input.length;
         int curr_sum = 0;
         int sum = 2;
-        //doPrintAllSubsequence(0,ds,curr_sum,sum,input,n);
+
+        //Print All//
+        doPrintAllSubsequence(0,ds,curr_sum,sum,input,n);
+
+        //Print one//
         boolean doPrintAnySub = doPrintAnyOneSubsequence(0,ds,curr_sum,sum,input,n);
         System.out.println(doPrintAnySub);
+
+        //Count All//
+        int countAllSubsequence = doCountAllSubsequences(0, curr_sum, sum, input, n);
+        System.out.println("Count of the valid subsequences :: "+countAllSubsequence);
     }
 }
