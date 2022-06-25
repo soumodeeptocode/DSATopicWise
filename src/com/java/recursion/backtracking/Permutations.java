@@ -17,31 +17,36 @@ public class Permutations {
     //Optimised Approach for finding all the permutations//
     static void recurPermute(int index, int[] input, List<List<Integer>> res, List<Integer> ds){
         //base conditions//
+        //input.length = 3
         if(index == input.length){
             ds = new ArrayList<>();
-            //[1,2,3]
+            //[2,3,1]
             for(int i= 0; i < input.length; i++){
-                ds.add(input[i]); //[1,2,3]
+                ds.add(input[i]); //[1
             }
-            //res.add(new ArrayList<>(ds)); //[[1,2,3]]
+            res.add(new ArrayList<>(ds)); //[[1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,2,1], [3,1,2]]
             return;
         }
-        //index = 0, 1
+        //index = 2
         //input.length = 3
+        //i = 2,
         for(int i = index; i < input.length; i++){
-            swap(i, index, input);//2 , 1
+            swap(i, index, input);
             recurPermute(index+1, input, res, ds);
+            //backtracking swap//
             swap(i, index, input);
         }
     }
-
+   //[1,2,3] = [1,2,3]
     private static void swap(int i, int j, int[] input){
+        //2
+        //1
         int t = input[i];
         input[i] = input[j];
         input[j] = t;
     }
     static List<List<Integer>> permute(int[] input){
-        List<List<Integer>> res = new ArrayList<>();
+        List<List<Integer>> res = new ArrayList<>(); // [[]] //
         List<Integer> ds = new ArrayList<>();
         recurPermute(0,input, res, ds);
         return res;
