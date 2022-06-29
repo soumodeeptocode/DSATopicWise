@@ -40,6 +40,7 @@ public class WordSearch {
                     doFindWord(grid, word, nRow, nCol, i-1, j, level+1) |
                     //bottom//
                     doFindWord(grid, word, nRow, nCol, i+1, j, level+1) ;
+            //backtracking step//
             grid[i][j] = temp;
             return res;
         }else{
