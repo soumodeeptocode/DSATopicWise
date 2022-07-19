@@ -28,7 +28,6 @@ public class ConstructBinaryTreeCustom {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.print("Enter the number of nodes :: ");
         int n = Integer.parseInt(br.readLine());
-        System.out.println(n);
         int[] levelOrder = new int[2*n+1];
         int i = 0;
         levelOrder[i] = 1;
